@@ -4,10 +4,33 @@ import {
   IconMailForward,
   IconMapPins,
 } from "@tabler/icons";
+import axios from "axios";
+import { useState } from "react";
+import UserCard from "../components/UserCard";
 
 export default function Home() {
+  const [genAmount, setGenAmount] = useState(1);
+
+  const [users, setUsers] = useState([]);
+
   const genUsers = async () => {
-    const resp = await axios.get(`https://randomuser.me/api/`);
+    if (genAmount < 1) {
+      alert("Invalid number of user");
+      return;
+    }
+    const resp = await axios.get(
+      `https://randomuser.me/api/?results=${genAmount}`
+    );
+    const newUsers = [];
+    for (x of resp.data.results) {
+      newUsers.push({
+        name: x.name.first + " " + x.name.last,
+        email: x.email,
+        imgUrk: x.picture.large,
+        address: `${x.location.city} ${x.location.state} ${x.location.country} ${x.location.postcode}`,
+      });
+    }
+    setUsers(newUsers);
   };
 
   return (
@@ -72,7 +95,7 @@ export default function Home() {
 
       {/* made by section */}
       <p className="text-center mt-3 text-muted fst-italic">
-        made by Chayanin Suatap 12345679
+        made by Nontapan Chanadee 640610645
       </p>
     </div>
   );
