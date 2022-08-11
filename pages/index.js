@@ -22,7 +22,7 @@ export default function Home() {
       `https://randomuser.me/api/?results=${genAmount}`
     );
     const newUsers = [];
-    for (x of resp.data.results) {
+    for (const x of resp.data.results) {
       newUsers.push({
         name: x.name.first + " " + x.name.last,
         email: x.email,
