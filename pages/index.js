@@ -1,9 +1,3 @@
-import {
-  IconChevronDown,
-  IconChevronUp,
-  IconMailForward,
-  IconMapPins,
-} from "@tabler/icons";
 import axios from "axios";
 import { useState } from "react";
 import UserCard from "../components/UserCard";
