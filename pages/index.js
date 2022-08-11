@@ -26,7 +26,7 @@ export default function Home() {
       newUsers.push({
         name: x.name.first + " " + x.name.last,
         email: x.email,
-        imgUrk: x.picture.large,
+        imgUrl: x.picture.large,
         address: `${x.location.city} ${x.location.state} ${x.location.country} ${x.location.postcode}`,
       });
     }
@@ -53,10 +53,20 @@ export default function Home() {
         </button>
       </div>
 
+      {users.map((x) => (
+        <UserCard
+          key={x.name}
+          name={x.name}
+          email={x.email}
+          imgUrl={x.imgUrl}
+          address={x.address}
+        />
+      ))}
+
       {/* Example of folded UserCard */}
-      <div className="border-bottom">
-        {/* main section */}
-        <div className="d-flex align-items-center p-3">
+      {/* <div className="border-bottom"> */}
+      {/* main section */}
+      {/* <div className="d-flex align-items-center p-3">
           <img
             src="/profile-placeholder.jpeg"
             width="90px"
@@ -64,15 +74,15 @@ export default function Home() {
           />
           <span className="text-center display-6 me-auto">Name...</span>
           <IconChevronDown />
-        </div>
+        </div> */}
 
-        {/* UserCardDetail is hidden */}
-      </div>
+      {/* UserCardDetail is hidden */}
+      {/* </div> */}
 
       {/* Example of expanded UserCard */}
-      <div className="border-bottom">
-        {/* main section */}
-        <div className="d-flex align-items-center p-3">
+      {/* <div className="border-bottom"> */}
+      {/* main section */}
+      {/* <div className="d-flex align-items-center p-3">
           <img
             src="/profile-placeholder.jpeg"
             width="90px"
@@ -80,10 +90,10 @@ export default function Home() {
           />
           <span className="text-center display-6 me-auto">Name...</span>
           <IconChevronUp />
-        </div>
+        </div> */}
 
-        {/* UserCardDetail*/}
-        <div className="text-center">
+      {/* UserCardDetail*/}
+      {/* <div className="text-center">
           <p>
             <IconMailForward /> Email...
           </p>
@@ -91,7 +101,7 @@ export default function Home() {
             <IconMapPins /> Address...
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* made by section */}
       <p className="text-center mt-3 text-muted fst-italic">
