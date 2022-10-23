@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import UserCard from "../components/UserCard";
 
-export default function Home() {
+export default function Home(props) {
   const [genAmount, setGenAmount] = useState(1);
 
   const [users, setUsers] = useState([]);
@@ -16,14 +16,14 @@ export default function Home() {
       `https://randomuser.me/api/?results=${genAmount}`
     );
     const newUsers = [];
-    for (const x of resp.data.results) {
+    resp.data.results.map((x) =>
       newUsers.push({
         name: x.name.first + " " + x.name.last,
         email: x.email,
         imgUrl: x.picture.large,
         address: `${x.location.city} ${x.location.state} ${x.location.country} ${x.location.postcode}`,
-      });
-    }
+      })
+    );
     setUsers(newUsers);
   };
 
@@ -41,6 +41,7 @@ export default function Home() {
           className="form-control text-center"
           style={{ maxWidth: "100px" }}
           type="number"
+          onInput={(e) => setGenAmount(e.target.value)}
         />
         <button class="btn btn-dark" onClick={() => genUsers()}>
           Generate
